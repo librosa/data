@@ -26,8 +26,10 @@ def main():
         trackmap = dict()
     
     for track in tracks:
-        if track not in trackmap:
-            trackmap[track] = input('Enter a key for {}: '.format(track))
+        if track not in trackmap.values():
+            key = input('Enter a key for {}: '.format(track))
+            desc = input('Enter a description for {}: '.format(track))
+            trackmap[key] = dict(path=track, desc=desc)
 
     with open(keymap, 'w') as fd:
         json.dump(trackmap, fd)
