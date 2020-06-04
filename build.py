@@ -25,8 +25,10 @@ def main():
     else:
         trackmap = dict()
     
+    known_tracks = set(t['path'] for t in trackmap.values())
+
     for track in tracks:
-        if track not in trackmap.values():
+        if track not in known_tracks:
             key = input('Enter a key for {}: '.format(track))
             desc = input('Enter a description for {}: '.format(track))
             trackmap[key] = dict(path=track, desc=desc)
