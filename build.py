@@ -28,11 +28,13 @@ def main():
     known_tracks = set(t['path'] for t in trackmap.values())
 
     for track in tracks:
-        if track not in known_tracks:
-            key = input('Enter a key for {}: '.format(track))
-            desc = input('Enter a description for {}: '.format(track))
-            trackmap[key] = dict(path=track, desc=desc)
-
+        if track not in known_tracks and track != "version_index":
+            try:
+                key = input('Enter a key for {}: '.format(track))
+                desc = input('Enter a description for {}: '.format(track))
+                trackmap[key] = dict(path=track, desc=desc)
+            except KeyboardInterrupt:
+                pass
     with open(keymap, 'w') as fd:
         json.dump(trackmap, fd)
 
