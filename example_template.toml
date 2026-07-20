@@ -1,0 +1,12 @@
+# Required fields
+title = "String (Human-readable track name)"
+attribution = "String (Composer, performer, or creator credits)"
+description = """
+String. Multi-line supported. Detailed explanation of the audio, 
+modifications made, or specific acoustic properties.
+"""
+license = "String (Strictly SPDX identifier, e.g., 'CC-BY-4.0', 'CC0-1.0')"
+
+# Optional fields (Omit the key entirely if not applicable)
+corpus = "String (Source collection, e.g., 'LibriSpeech SLR12')"
+url = "String (Primary external link to the source material or dataset)"

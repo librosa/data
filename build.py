@@ -28,7 +28,8 @@ def main():
     known_tracks = set(t['path'] for t in trackmap.values())
 
     for track in tracks:
-        if track not in known_tracks and track != "version_index":
+        filepath = Path('audio') / Path(track)
+        if track not in known_tracks and track != "version_index" and not filepath.is_symlink():
             try:
                 key = input('Enter a key for {}: '.format(track))
                 desc = input('Enter a description for {}: '.format(track))

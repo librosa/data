@@ -1,0 +1,17 @@
+title = "Jesu geh voran"
+attribution = "Adam Drese (composer)"
+description = """
+Excerpted from:
+    [1] Stefan Balke, Axel Berndt, and Meinard Müller.
+        ChoraleBricks: A Modular Multitrack Dataset for Wind Music Research
+        Transaction of the International Society for Music Information Retrieval (TISMIR), 8(1): 39–54, 2025. 
+
+Channels 1--3 include the Alto Sax, Clarinet and Trumpet recordings.
+
+Channels 4 and 5 were synthesized independently by Brian McFee as follows:
+    - Channel 4 was recorded from a Roland SC-88 Pro with MIDI Piano
+    - Channel 5 was recorded from Vital using the "Synthetic Solo" (strings) preset
+"""
+license = "CC-BY-4.0"
+corpus = "ChoraleBricks"
+url = "https://www.audiolabs-erlangen.de/resources/MIR/2025-ChoraleBricks"
