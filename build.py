@@ -29,7 +29,7 @@ def main():
 
     for track in tracks:
         filepath = Path('audio') / Path(track)
-        if track not in known_tracks and track != "version_index" and not filepath.is_symlink():
+        if track not in known_tracks and track not in ("version_index", "bib_index") and not filepath.is_symlink():
             try:
                 key = input('Enter a key for {}: '.format(track))
                 desc = input('Enter a description for {}: '.format(track))
