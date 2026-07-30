@@ -41,7 +41,7 @@ jobs:
       #   run: |
       #     git config user.name "github-actions[bot]"
       #     git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      #     git add version_index.msgpack bib_index.msgpack
+      #     git add audio/version_index.msgpack audio/bib_index.msgpack
       #     git commit -m "Automated update of Zenodo DOI indices"
       #     git push
 
