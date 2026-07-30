@@ -37,6 +37,7 @@ jobs:
           fi
 
       - name: Regenerate pooch registry
+        if: steps.git-check.outputs.changes == 'true'
         run: python generate_pooch.py --datadir audio/ --registry index/registry.txt
 
       # - name: Commit and Push changes
