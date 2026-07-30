@@ -51,6 +51,6 @@ jobs:
         with:
           name: doi-indices
           path: |
-            version_index.msgpack
-            bib_index.msgpack
+            audio/version_index.msgpack
+            audio/bib_index.msgpack
           retention-days: 5
