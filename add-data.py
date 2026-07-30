@@ -1,5 +1,11 @@
 #!/usr/bin/env python
-'''Index data files for distribution'''
+'''Index data files for distribution.
+
+This should only run when new example data is added to the collection.
+
+It updates the metadata index (index.json) as well as the pooch registry (registry.txt) for the
+data files.
+'''
 
 from pathlib import Path
 import pooch
@@ -37,7 +43,7 @@ def main():
             except KeyboardInterrupt:
                 pass
     with open(keymap, 'w') as fd:
-        json.dump(trackmap, fd)
+        json.dump(trackmap, fd, indent=4)
 
 
 if __name__ == '__main__':
