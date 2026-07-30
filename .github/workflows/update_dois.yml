@@ -1,0 +1,56 @@
+name: Update Zenodo DOIs
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-indices:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required for the future git push step
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' 
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install msgpack
+
+      - name: Run DOI extraction script
+        run: python pull_dois.py --outdir audio/
+
+      - name: Check for file modifications
+        id: git-check
+        run: |
+          if [ -n "$(git status --porcelain *.msgpack)" ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      # - name: Commit and Push changes
+      #   if: steps.git-check.outputs.changes == 'true'
+      #   run: |
+      #     git config user.name "github-actions[bot]"
+      #     git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     git add version_index.msgpack bib_index.msgpack
+      #     git commit -m "Automated update of Zenodo DOI indices"
+      #     git push
+
+      - name: Upload artifacts (Test Mode)
+        if: steps.git-check.outputs.changes == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: doi-indices
+          path: |
+            version_index.msgpack
+            bib_index.msgpack
+          retention-days: 5
