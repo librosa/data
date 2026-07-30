@@ -27,6 +27,12 @@ def parse_args():
     return parser.parse_args()
 
 
+def zenodo_suffix(doi):
+
+    if not doi.startswith("10.5281/zenodo."):
+        raise ValueError("Invalid Zenodo DOI format. Expected '10.5281/zenodo.<id>'")
+    return int(doi.split(".")[-1])
+
 def get_zenodo_record_versions(concept_doi: str) -> dict:
     if not concept_doi.startswith("10.5281/zenodo."):
         raise ValueError("Invalid Zenodo DOI format. Expected '10.5281/zenodo.<id>'")
@@ -68,6 +74,8 @@ def get_zenodo_record_versions(concept_doi: str) -> dict:
 
         next_url = page_data.get("links", {}).get("next")
 
+    # Sort the index chronologically by DOI
+    doi_map = dict(sorted(doi_map.items(), key=lambda item: zenodo_suffix(item[1])))
     return doi_map
 
 def get_bibtex_index(doi_map: dict) -> dict:
